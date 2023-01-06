@@ -249,7 +249,7 @@ void MainThread::search() {
       sync_cout << UCI::pv(bestThread->rootPos, bestThread->completedDepth) << sync_endl;
   srand(time(0));
   
-  if(rand()/RAND_MAX < 0.7) {
+  if(rand()/RAND_MAX < 0.1) {
     sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
   } else {
     MoveList listOfLegalMoves = MoveList<LEGAL>(rootPos);
