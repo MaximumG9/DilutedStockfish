@@ -250,10 +250,10 @@ void MainThread::search() {
   srand(time(0));
   
   if(rand()/RAND_MAX < 0.1) {
-    std::cout << "good move";
+    sync_cout << "goodmove";
     sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
   } else {
-    std::cout << "bad move";
+    sync_cout << "badmove";
     MoveList listOfLegalMoves = MoveList<LEGAL>(rootPos);
     int randint = rand() % listOfLegalMoves.size();
     sync_cout << "bestmove" << UCI::move(listOfLegalMoves.begin()[randint].move, rootPos.is_chess960());
