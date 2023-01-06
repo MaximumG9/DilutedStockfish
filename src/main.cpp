@@ -17,6 +17,8 @@
 */
 
 #include <iostream>
+#include <random>
+#include <time.h>
 
 #include "bitboard.h"
 #include "endgame.h"
@@ -45,7 +47,7 @@ int main(int argc, char* argv[]) {
   Threads.set(size_t(Options["Threads"]));
   Search::clear(); // After threads are up
   Eval::NNUE::init();
-
+  srand(time(0));
   UCI::loop(argc, argv);
 
   Threads.set(0);
