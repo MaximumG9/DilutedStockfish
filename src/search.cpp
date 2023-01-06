@@ -22,6 +22,8 @@
 #include <cstring>   // For std::memset
 #include <iostream>
 #include <sstream>
+#include <random>
+#include <time.h>
 
 #include "evaluate.h"
 #include "misc.h"
@@ -245,9 +247,15 @@ void MainThread::search() {
   // Send again PV info if we have a new best thread
   if (bestThread != this)
       sync_cout << UCI::pv(bestThread->rootPos, bestThread->completedDepth) << sync_endl;
-
-  sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
-
+  srand(time(0));
+  
+  if(rand()/RAND_MAX < 0.7) {
+    sync_cout << "bestmove " << UCI::move(bestThread->rootMoves[0].pv[0], rootPos.is_chess960());
+  } else {
+    MoveList listOfLegalMoves = MoveList<LEGAL>(rootPos);
+    int randint = rand() % listOfLegalMoves.size();
+    sync_cout << "bestmove" << UCI::move(listOfLegalMoves.begin()[randint].move, rootPos.is_chess960());
+  }
   if (bestThread->rootMoves[0].pv.size() > 1 || bestThread->rootMoves[0].extract_ponder_from_tt(rootPos))
       std::cout << " ponder " << UCI::move(bestThread->rootMoves[0].pv[1], rootPos.is_chess960());
 
