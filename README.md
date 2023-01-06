@@ -14,7 +14,7 @@
 </div>
 
 ## Diluted Stockfish
-Diluted Stockfish is a fork of stockfish that literally just makes it so 30% of the time, instead of playing a move decided by the engine, it will play a random legal move. What follows, is the normal stockfish readme
+Diluted Stockfish is a fork of stockfish that literally just makes it so 30% of the time, instead of playing a move decided by the engine, it will play a random legal move. What follows, is the normal stockfish readme: 
 
 ## Overview
 
